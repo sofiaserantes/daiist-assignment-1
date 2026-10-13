@@ -23,12 +23,6 @@ The model supports a real-estate investor deciding whether to buy a house or not
 Accuracy alone is therefore the wrong metric to optimise or report only. This is the reason I also used F1 and ROC AUC as the primary comparison metrics. 
 
 ## Data preparation & feature engineering
-
-*What you engineered and why, and any data-quality decisions you made along
-the way — e.g. "segment X had defective data, so I excluded it and used a
-population-average default for scope Y at inference time; the impact of
-that choice is Z."*
-
 *Excluded features for the model:*
 - SalePrice, price_per_sqft,expected_psf,group_size: These are the columns I used to build the buy/no-buy label. Using them as features would be redundant becuase the model would know if the deal is good or not.
 - Yr Sold, Mo Sold: The comp groups were built using Yr Sold, so it's tangled up with the answer similar to the problem with the previous features. Also this variables see disjoint year ranges, so keeping them would let the model key off "which year" rather than real house characteristics. 
@@ -49,12 +43,6 @@ Created Features:
 All numeric features were standardized (zero mean, unit variance) using statistics computed on the training set only, then applied unchanged to the test set.
 
 ## Modeling: three implementations, one model
-
-*Which model (linear or logistic regression) and why. A results table
-comparing scikit-learn, the manual PyTorch loop, and the standard
-torch.nn.Module/torch.optim workflow, on the same test set, against the
-naive baseline. Do the three agree? If not, why not?*
-
 I used logistic regression since my target variable is a binary outcome (buy/not buy), not a continuous number. 
 
 | Method | Accuracy | Precision | Recall | F1 | ROC AUC |
@@ -71,10 +59,6 @@ I diagnosed this by sweeping scikit-learn's C over {1.0, 0.1, 0.05, 0.01, 0.005}
 The one hyperparameter I tuned was this regularization strength, following the "tune sparingly" guidance. I did not grid-search the learning rate beyond confirming 2,000 steps at lr=0.1 was enough for both PyTorch versions to converge to the same place as scikit-learn's closed-form-equivalent optimum.
 
 ## Limitations & next steps
-
-*Real limitations you found, and concretely how you'd address each one with
-more time or data — not generic hedging.*
-
 *Sparse comp groups bias the label toward "no buy."* As described above, 88 of 237 comp groups have fewer than 5 houses. With more time, I'd add a fallback hierarchy (drop Yr Sold, then drop qual_tier, in that order) for any group below a minimum size, so every house is compared against a reasonably-sized reference set instead of sometimes just itself.
 
 *No validation split, hyperparameter tuning touched the test set.* I tuned scikit-learn's C by directly observing test-set accuracy at each value, rather than holding out a separate validation slice (e.g. 2006–2007 train / 2008 validation / 2009–2010 test). For a single, sparingly-tuned hyperparameter this is a minor simplification, but it means my reported test metrics are very slightly optimistic — a stricter setup would tune on a validation split and touch the test set exactly once at the end.
