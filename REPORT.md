@@ -19,7 +19,7 @@ The model supports a real-estate investor deciding whether to buy a house or not
 
 *Time-based split:* Since comp groups include Yr Sold, a random split could put two houses from the same comp group on opposite sides of the train/test boundary. That means a training house's label would have been partly computed using a held-out test house's price and vice versa. Splitting by year instead closes the leak because no comp group can span both sides of a split that cuts exactly along the same variable (YrSold) the comp groups are defined by. It also makes the model more realistic because it is trained with historical sales(from 2006-2008) and then applied to future listing (2009-2010)
 
-*Decision Threshold:* Becuase the classes are imbalaced (73.2% is labeled as "no buy"), a naive model that always predicts "no buy" already reaches 74.1% accuracy on the test set with zero recall. It would neven falg a single real deal for the investor. 
+*Decision Threshold:* Because the classes are imbalaced (73.2% is labeled as "no buy"), a naive model that always predicts "no buy" already reaches 74.1% accuracy on the test set with zero recall. It would neven falg a single real deal for the investor. 
 Accuracy alone is therefore the wrong metric to optimise or report only. This is the reason I also used F1 and ROC AUC as the primary comparison metrics. 
 
 ## Data preparation & feature engineering
