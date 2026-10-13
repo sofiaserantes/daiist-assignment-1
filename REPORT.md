@@ -1,9 +1,4 @@
 # Assignment 1 Report
-
-*Delete this italic guidance as you fill in each section. You'll be asked to
-defend any of this without your code in front of you — write only what you
-can actually explain.*
-
 - **Name**: Sofía Serantes Vázquez
 - **Student ID**: 19523
 - **Email**: sserantes.ieu2022@student.ie.edu
