@@ -39,7 +39,7 @@ SEED = 42
 # sweeping C in {1.0, 0.1, 0.05, 0.01, 0.005}: C=1.0 overfits badly
 # (88.8% train acc / 45.5% test acc on 275 features, 1941 rows) since the
 # L2 penalty is too weak for this many columns relative to rows. C=0.05
-# is where test accuracy peaks (~81%) -- see REPORT.md.
+# is where test accuracy peaks (~81%); see REPORT.md.
 REG_STRENGTH = 0.05
 LEARNING_RATE = 0.1
 N_EPOCHS = 2000
