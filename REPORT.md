@@ -7,7 +7,7 @@
 ## Dataset
 
 The Ames Housing dataset (De Cock,2011), a widely - used dataset of 2,930 individual home sales in Ames, Iowa between 2006 and 2010. 
-One row represents one house sale, with 82 columns describing the property's physical characteristics ( size, quality, age, location, amenities) and the slae itself (price and date). I used the full original version pulled from a public GitHub of De Cock's data. 
+One row represents one house sale, with 82 columns describing the property's physical characteristics ( size, quality, age, location, amenities) and the sale itself (price and date). I used the full original version pulled from a public GitHub of De Cock's data. 
 
 I picked this dataset because it has a lot of information (around 80 columns) that give room for feature engineering and because the 2006-2010 sale window spans the 2008 housing crash, which forced a real decision about how to split the data rather than a default random split. 
 
